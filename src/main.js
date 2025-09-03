@@ -33,14 +33,14 @@ const router = createRouter({
 // 路由守卫：检查需要登录的页面
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
-  const publicRoutes = ['/login', '/']; // 公开路由
+  // const publicRoutes = ['/login', '/']; // 公开路由
   
-  // 如果需要登录的页面且没有token
-  if (!publicRoutes.includes(to.path) && !token) {
-    next('/login');
-  } else {
+  // // 如果需要登录的页面且没有token
+  // if (!publicRoutes.includes(to.path) && !token) {
+  //   next('/login');
+  // } else {
     next();
-  }
+  // }
 });
 
 const app = createApp(App);
