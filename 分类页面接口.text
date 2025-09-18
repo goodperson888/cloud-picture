@@ -1,0 +1,2298 @@
+分类管理
+
+
+GET
+/api/categories
+获取分类列表
+
+获取当前用户的媒体分类列表，支持按媒体类型过滤和树形结构显示
+
+Parameters
+Try it out
+Name	Description
+media_type
+string
+(query)
+媒体类型
+
+Available values : image, video
+
+
+--
+tree
+boolean
+(query)
+是否返回树形结构
+
+Default value : false
+
+
+false
+Responses
+Response content type
+
+application/json
+Code	Description
+200	
+OK
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": [
+    {
+      "albums": [
+        {
+          "business_user": {
+            "categories": [
+              {
+                "albums": [
+                  "string"
+                ],
+                "business_user": "string",
+                "business_user_id": 0,
+                "children": [
+                  "string"
+                ],
+                "created_at": "string",
+                "description": "string",
+                "id": 0,
+                "media_type": "image",
+                "name": "string",
+                "parent": "string",
+                "parent_id": 0,
+                "updated_at": "string"
+              }
+            ],
+            "company_name": "string",
+            "created_at": "string",
+            "created_by_admin": {
+              "created_at": "string",
+              "email": "string",
+              "id": 0,
+              "updated_at": "string",
+              "username": "string"
+            },
+            "created_by_admin_id": 0,
+            "email": "string",
+            "id": 0,
+            "media_files": [
+              {
+                "album": "string",
+                "album_id": 0,
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "duration": 0,
+                "file_path": "string",
+                "file_size": 0,
+                "file_type": "image",
+                "id": 0,
+                "mime_type": "string",
+                "thumbnail_path": "string",
+                "title": "string",
+                "updated_at": "string"
+              }
+            ],
+            "phone": "string",
+            "plan_type": "string",
+            "referral_code": "string",
+            "share_links": [
+              {
+                "access_password": "string",
+                "business_user": "string",
+                "business_user_id": 0,
+                "category": {
+                  "albums": [
+                    "string"
+                  ],
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "children": [
+                    "string"
+                  ],
+                  "created_at": "string",
+                  "description": "string",
+                  "id": 0,
+                  "media_type": "image",
+                  "name": "string",
+                  "parent": "string",
+                  "parent_id": 0,
+                  "updated_at": "string"
+                },
+                "category_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "expires_at": "string",
+                "id": 0,
+                "media_file": {
+                  "album": "string",
+                  "album_id": 0,
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "duration": 0,
+                  "file_path": "string",
+                  "file_size": 0,
+                  "file_type": "image",
+                  "id": 0,
+                  "mime_type": "string",
+                  "thumbnail_path": "string",
+                  "title": "string",
+                  "updated_at": "string"
+                },
+                "media_file_id": 0,
+                "share_type": "single",
+                "title": "string",
+                "token": "string",
+                "updated_at": "string",
+                "view_count": 0
+              }
+            ],
+            "status": "active",
+            "updated_at": "string",
+            "user_referral": {
+              "business_user": "string",
+              "business_user_id": 0,
+              "created_at": "string",
+              "id": 0,
+              "referral_code": "string",
+              "referral_code_id": 0,
+              "referred_at": "string",
+              "sales_name": "string",
+              "sales_referral_code": {
+                "code": "string",
+                "created_at": "string",
+                "id": 0,
+                "is_active": true,
+                "sales_email": "string",
+                "sales_name": "string",
+                "sales_phone": "string",
+                "updated_at": "string",
+                "user_referrals": [
+                  "string"
+                ]
+              },
+              "updated_at": "string"
+            },
+            "username": "string"
+          },
+          "business_user_id": 0,
+          "category": {
+            "albums": [
+              "string"
+            ],
+            "business_user": {
+              "categories": [
+                {
+                  "albums": [
+                    "string"
+                  ],
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "children": [
+                    "string"
+                  ],
+                  "created_at": "string",
+                  "description": "string",
+                  "id": 0,
+                  "media_type": "image",
+                  "name": "string",
+                  "parent": "string",
+                  "parent_id": 0,
+                  "updated_at": "string"
+                }
+              ],
+              "company_name": "string",
+              "created_at": "string",
+              "created_by_admin": {
+                "created_at": "string",
+                "email": "string",
+                "id": 0,
+                "updated_at": "string",
+                "username": "string"
+              },
+              "created_by_admin_id": 0,
+              "email": "string",
+              "id": 0,
+              "media_files": [
+                {
+                  "album": "string",
+                  "album_id": 0,
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "duration": 0,
+                  "file_path": "string",
+                  "file_size": 0,
+                  "file_type": "image",
+                  "id": 0,
+                  "mime_type": "string",
+                  "thumbnail_path": "string",
+                  "title": "string",
+                  "updated_at": "string"
+                }
+              ],
+              "phone": "string",
+              "plan_type": "string",
+              "referral_code": "string",
+              "share_links": [
+                {
+                  "access_password": "string",
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "category": {
+                    "albums": [
+                      "string"
+                    ],
+                    "business_user": "string",
+                    "business_user_id": 0,
+                    "children": [
+                      "string"
+                    ],
+                    "created_at": "string",
+                    "description": "string",
+                    "id": 0,
+                    "media_type": "image",
+                    "name": "string",
+                    "parent": "string",
+                    "parent_id": 0,
+                    "updated_at": "string"
+                  },
+                  "category_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "expires_at": "string",
+                  "id": 0,
+                  "media_file": {
+                    "album": "string",
+                    "album_id": 0,
+                    "business_user": "string",
+                    "business_user_id": 0,
+                    "created_at": "string",
+                    "description": "string",
+                    "duration": 0,
+                    "file_path": "string",
+                    "file_size": 0,
+                    "file_type": "image",
+                    "id": 0,
+                    "mime_type": "string",
+                    "thumbnail_path": "string",
+                    "title": "string",
+                    "updated_at": "string"
+                  },
+                  "media_file_id": 0,
+                  "share_type": "single",
+                  "title": "string",
+                  "token": "string",
+                  "updated_at": "string",
+                  "view_count": 0
+                }
+              ],
+              "status": "active",
+              "updated_at": "string",
+              "user_referral": {
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "id": 0,
+                "referral_code": "string",
+                "referral_code_id": 0,
+                "referred_at": "string",
+                "sales_name": "string",
+                "sales_referral_code": {
+                  "code": "string",
+                  "created_at": "string",
+                  "id": 0,
+                  "is_active": true,
+                  "sales_email": "string",
+                  "sales_name": "string",
+                  "sales_phone": "string",
+                  "updated_at": "string",
+                  "user_referrals": [
+                    "string"
+                  ]
+                },
+                "updated_at": "string"
+              },
+              "username": "string"
+            },
+            "business_user_id": 0,
+            "children": [
+              "string"
+            ],
+            "created_at": "string",
+            "description": "string",
+            "id": 0,
+            "media_type": "image",
+            "name": "string",
+            "parent": "string",
+            "parent_id": 0,
+            "updated_at": "string"
+          },
+          "category_id": 0,
+          "cover_image": {
+            "album": "string",
+            "album_id": 0,
+            "business_user": {
+              "categories": [
+                {
+                  "albums": [
+                    "string"
+                  ],
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "children": [
+                    "string"
+                  ],
+                  "created_at": "string",
+                  "description": "string",
+                  "id": 0,
+                  "media_type": "image",
+                  "name": "string",
+                  "parent": "string",
+                  "parent_id": 0,
+                  "updated_at": "string"
+                }
+              ],
+              "company_name": "string",
+              "created_at": "string",
+              "created_by_admin": {
+                "created_at": "string",
+                "email": "string",
+                "id": 0,
+                "updated_at": "string",
+                "username": "string"
+              },
+              "created_by_admin_id": 0,
+              "email": "string",
+              "id": 0,
+              "media_files": [
+                {
+                  "album": "string",
+                  "album_id": 0,
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "duration": 0,
+                  "file_path": "string",
+                  "file_size": 0,
+                  "file_type": "image",
+                  "id": 0,
+                  "mime_type": "string",
+                  "thumbnail_path": "string",
+                  "title": "string",
+                  "updated_at": "string"
+                }
+              ],
+              "phone": "string",
+              "plan_type": "string",
+              "referral_code": "string",
+              "share_links": [
+                {
+                  "access_password": "string",
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "category": {
+                    "albums": [
+                      "string"
+                    ],
+                    "business_user": "string",
+                    "business_user_id": 0,
+                    "children": [
+                      "string"
+                    ],
+                    "created_at": "string",
+                    "description": "string",
+                    "id": 0,
+                    "media_type": "image",
+                    "name": "string",
+                    "parent": "string",
+                    "parent_id": 0,
+                    "updated_at": "string"
+                  },
+                  "category_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "expires_at": "string",
+                  "id": 0,
+                  "media_file": {
+                    "album": "string",
+                    "album_id": 0,
+                    "business_user": "string",
+                    "business_user_id": 0,
+                    "created_at": "string",
+                    "description": "string",
+                    "duration": 0,
+                    "file_path": "string",
+                    "file_size": 0,
+                    "file_type": "image",
+                    "id": 0,
+                    "mime_type": "string",
+                    "thumbnail_path": "string",
+                    "title": "string",
+                    "updated_at": "string"
+                  },
+                  "media_file_id": 0,
+                  "share_type": "single",
+                  "title": "string",
+                  "token": "string",
+                  "updated_at": "string",
+                  "view_count": 0
+                }
+              ],
+              "status": "active",
+              "updated_at": "string",
+              "user_referral": {
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "id": 0,
+                "referral_code": "string",
+                "referral_code_id": 0,
+                "referred_at": "string",
+                "sales_name": "string",
+                "sales_referral_code": {
+                  "code": "string",
+                  "created_at": "string",
+                  "id": 0,
+                  "is_active": true,
+                  "sales_email": "string",
+                  "sales_name": "string",
+                  "sales_phone": "string",
+                  "updated_at": "string",
+                  "user_referrals": [
+                    "string"
+                  ]
+                },
+                "updated_at": "string"
+              },
+              "username": "string"
+            },
+            "business_user_id": 0,
+            "created_at": "string",
+            "description": "string",
+            "duration": 0,
+            "file_path": "string",
+            "file_size": 0,
+            "file_type": "image",
+            "id": 0,
+            "mime_type": "string",
+            "thumbnail_path": "string",
+            "title": "string",
+            "updated_at": "string"
+          },
+          "cover_image_id": 0,
+          "created_at": "string",
+          "description": "string",
+          "id": 0,
+          "media_count": 0,
+          "media_files": [
+            {
+              "album": "string",
+              "album_id": 0,
+              "business_user": {
+                "categories": [
+                  {
+                    "albums": [
+                      "string"
+                    ],
+                    "business_user": "string",
+                    "business_user_id": 0,
+                    "children": [
+                      "string"
+                    ],
+                    "created_at": "string",
+                    "description": "string",
+                    "id": 0,
+                    "media_type": "image",
+                    "name": "string",
+                    "parent": "string",
+                    "parent_id": 0,
+                    "updated_at": "string"
+                  }
+                ],
+                "company_name": "string",
+                "created_at": "string",
+                "created_by_admin": {
+                  "created_at": "string",
+                  "email": "string",
+                  "id": 0,
+                  "updated_at": "string",
+                  "username": "string"
+                },
+                "created_by_admin_id": 0,
+                "email": "string",
+                "id": 0,
+                "media_files": [
+                  {
+                    "album": "string",
+                    "album_id": 0,
+                    "business_user": "string",
+                    "business_user_id": 0,
+                    "created_at": "string",
+                    "description": "string",
+                    "duration": 0,
+                    "file_path": "string",
+                    "file_size": 0,
+                    "file_type": "image",
+                    "id": 0,
+                    "mime_type": "string",
+                    "thumbnail_path": "string",
+                    "title": "string",
+                    "updated_at": "string"
+                  }
+                ],
+                "phone": "string",
+                "plan_type": "string",
+                "referral_code": "string",
+                "share_links": [
+                  {
+                    "access_password": "string",
+                    "business_user": "string",
+                    "business_user_id": 0,
+                    "category": {
+                      "albums": [
+                        "string"
+                      ],
+                      "business_user": "string",
+                      "business_user_id": 0,
+                      "children": [
+                        "string"
+                      ],
+                      "created_at": "string",
+                      "description": "string",
+                      "id": 0,
+                      "media_type": "image",
+                      "name": "string",
+                      "parent": "string",
+                      "parent_id": 0,
+                      "updated_at": "string"
+                    },
+                    "category_id": 0,
+                    "created_at": "string",
+                    "description": "string",
+                    "expires_at": "string",
+                    "id": 0,
+                    "media_file": {
+                      "album": "string",
+                      "album_id": 0,
+                      "business_user": "string",
+                      "business_user_id": 0,
+                      "created_at": "string",
+                      "description": "string",
+                      "duration": 0,
+                      "file_path": "string",
+                      "file_size": 0,
+                      "file_type": "image",
+                      "id": 0,
+                      "mime_type": "string",
+                      "thumbnail_path": "string",
+                      "title": "string",
+                      "updated_at": "string"
+                    },
+                    "media_file_id": 0,
+                    "share_type": "single",
+                    "title": "string",
+                    "token": "string",
+                    "updated_at": "string",
+                    "view_count": 0
+                  }
+                ],
+                "status": "active",
+                "updated_at": "string",
+                "user_referral": {
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "created_at": "string",
+                  "id": 0,
+                  "referral_code": "string",
+                  "referral_code_id": 0,
+                  "referred_at": "string",
+                  "sales_name": "string",
+                  "sales_referral_code": {
+                    "code": "string",
+                    "created_at": "string",
+                    "id": 0,
+                    "is_active": true,
+                    "sales_email": "string",
+                    "sales_name": "string",
+                    "sales_phone": "string",
+                    "updated_at": "string",
+                    "user_referrals": [
+                      "string"
+                    ]
+                  },
+                  "updated_at": "string"
+                },
+                "username": "string"
+              },
+              "business_user_id": 0,
+              "created_at": "string",
+              "description": "string",
+              "duration": 0,
+              "file_path": "string",
+              "file_size": 0,
+              "file_type": "image",
+              "id": 0,
+              "mime_type": "string",
+              "thumbnail_path": "string",
+              "title": "string",
+              "updated_at": "string"
+            }
+          ],
+          "name": "string",
+          "sort_order": 0,
+          "updated_at": "string"
+        }
+      ],
+      "business_user": {
+        "categories": [
+          {
+            "albums": [
+              "string"
+            ],
+            "business_user": "string",
+            "business_user_id": 0,
+            "children": [
+              "string"
+            ],
+            "created_at": "string",
+            "description": "string",
+            "id": 0,
+            "media_type": "image",
+            "name": "string",
+            "parent": "string",
+            "parent_id": 0,
+            "updated_at": "string"
+          }
+        ],
+        "company_name": "string",
+        "created_at": "string",
+        "created_by_admin": {
+          "created_at": "string",
+          "email": "string",
+          "id": 0,
+          "updated_at": "string",
+          "username": "string"
+        },
+        "created_by_admin_id": 0,
+        "email": "string",
+        "id": 0,
+        "media_files": [
+          {
+            "album": "string",
+            "album_id": 0,
+            "business_user": "string",
+            "business_user_id": 0,
+            "created_at": "string",
+            "description": "string",
+            "duration": 0,
+            "file_path": "string",
+            "file_size": 0,
+            "file_type": "image",
+            "id": 0,
+            "mime_type": "string",
+            "thumbnail_path": "string",
+            "title": "string",
+            "updated_at": "string"
+          }
+        ],
+        "phone": "string",
+        "plan_type": "string",
+        "referral_code": "string",
+        "share_links": [
+          {
+            "access_password": "string",
+            "business_user": "string",
+            "business_user_id": 0,
+            "category": {
+              "albums": [
+                "string"
+              ],
+              "business_user": "string",
+              "business_user_id": 0,
+              "children": [
+                "string"
+              ],
+              "created_at": "string",
+              "description": "string",
+              "id": 0,
+              "media_type": "image",
+              "name": "string",
+              "parent": "string",
+              "parent_id": 0,
+              "updated_at": "string"
+            },
+            "category_id": 0,
+            "created_at": "string",
+            "description": "string",
+            "expires_at": "string",
+            "id": 0,
+            "media_file": {
+              "album": "string",
+              "album_id": 0,
+              "business_user": "string",
+              "business_user_id": 0,
+              "created_at": "string",
+              "description": "string",
+              "duration": 0,
+              "file_path": "string",
+              "file_size": 0,
+              "file_type": "image",
+              "id": 0,
+              "mime_type": "string",
+              "thumbnail_path": "string",
+              "title": "string",
+              "updated_at": "string"
+            },
+            "media_file_id": 0,
+            "share_type": "single",
+            "title": "string",
+            "token": "string",
+            "updated_at": "string",
+            "view_count": 0
+          }
+        ],
+        "status": "active",
+        "updated_at": "string",
+        "user_referral": {
+          "business_user": "string",
+          "business_user_id": 0,
+          "created_at": "string",
+          "id": 0,
+          "referral_code": "string",
+          "referral_code_id": 0,
+          "referred_at": "string",
+          "sales_name": "string",
+          "sales_referral_code": {
+            "code": "string",
+            "created_at": "string",
+            "id": 0,
+            "is_active": true,
+            "sales_email": "string",
+            "sales_name": "string",
+            "sales_phone": "string",
+            "updated_at": "string",
+            "user_referrals": [
+              "string"
+            ]
+          },
+          "updated_at": "string"
+        },
+        "username": "string"
+      },
+      "business_user_id": 0,
+      "children": [
+        {
+          "albums": [
+            "string"
+          ],
+          "business_user": {
+            "categories": [
+              {
+                "albums": [
+                  "string"
+                ],
+                "business_user": "string",
+                "business_user_id": 0,
+                "children": [
+                  "string"
+                ],
+                "created_at": "string",
+                "description": "string",
+                "id": 0,
+                "media_type": "image",
+                "name": "string",
+                "parent": "string",
+                "parent_id": 0,
+                "updated_at": "string"
+              }
+            ],
+            "company_name": "string",
+            "created_at": "string",
+            "created_by_admin": {
+              "created_at": "string",
+              "email": "string",
+              "id": 0,
+              "updated_at": "string",
+              "username": "string"
+            },
+            "created_by_admin_id": 0,
+            "email": "string",
+            "id": 0,
+            "media_files": [
+              {
+                "album": "string",
+                "album_id": 0,
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "duration": 0,
+                "file_path": "string",
+                "file_size": 0,
+                "file_type": "image",
+                "id": 0,
+                "mime_type": "string",
+                "thumbnail_path": "string",
+                "title": "string",
+                "updated_at": "string"
+              }
+            ],
+            "phone": "string",
+            "plan_type": "string",
+            "referral_code": "string",
+            "share_links": [
+              {
+                "access_password": "string",
+                "business_user": "string",
+                "business_user_id": 0,
+                "category": {
+                  "albums": [
+                    "string"
+                  ],
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "children": [
+                    "string"
+                  ],
+                  "created_at": "string",
+                  "description": "string",
+                  "id": 0,
+                  "media_type": "image",
+                  "name": "string",
+                  "parent": "string",
+                  "parent_id": 0,
+                  "updated_at": "string"
+                },
+                "category_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "expires_at": "string",
+                "id": 0,
+                "media_file": {
+                  "album": "string",
+                  "album_id": 0,
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "duration": 0,
+                  "file_path": "string",
+                  "file_size": 0,
+                  "file_type": "image",
+                  "id": 0,
+                  "mime_type": "string",
+                  "thumbnail_path": "string",
+                  "title": "string",
+                  "updated_at": "string"
+                },
+                "media_file_id": 0,
+                "share_type": "single",
+                "title": "string",
+                "token": "string",
+                "updated_at": "string",
+                "view_count": 0
+              }
+            ],
+            "status": "active",
+            "updated_at": "string",
+            "user_referral": {
+              "business_user": "string",
+              "business_user_id": 0,
+              "created_at": "string",
+              "id": 0,
+              "referral_code": "string",
+              "referral_code_id": 0,
+              "referred_at": "string",
+              "sales_name": "string",
+              "sales_referral_code": {
+                "code": "string",
+                "created_at": "string",
+                "id": 0,
+                "is_active": true,
+                "sales_email": "string",
+                "sales_name": "string",
+                "sales_phone": "string",
+                "updated_at": "string",
+                "user_referrals": [
+                  "string"
+                ]
+              },
+              "updated_at": "string"
+            },
+            "username": "string"
+          },
+          "business_user_id": 0,
+          "children": [
+            "string"
+          ],
+          "created_at": "string",
+          "description": "string",
+          "id": 0,
+          "media_type": "image",
+          "name": "string",
+          "parent": "string",
+          "parent_id": 0,
+          "updated_at": "string"
+        }
+      ],
+      "created_at": "string",
+      "description": "string",
+      "id": 0,
+      "media_type": "image",
+      "name": "string",
+      "parent": {
+        "albums": [
+          "string"
+        ],
+        "business_user": {
+          "categories": [
+            {
+              "albums": [
+                "string"
+              ],
+              "business_user": "string",
+              "business_user_id": 0,
+              "children": [
+                "string"
+              ],
+              "created_at": "string",
+              "description": "string",
+              "id": 0,
+              "media_type": "image",
+              "name": "string",
+              "parent": "string",
+              "parent_id": 0,
+              "updated_at": "string"
+            }
+          ],
+          "company_name": "string",
+          "created_at": "string",
+          "created_by_admin": {
+            "created_at": "string",
+            "email": "string",
+            "id": 0,
+            "updated_at": "string",
+            "username": "string"
+          },
+          "created_by_admin_id": 0,
+          "email": "string",
+          "id": 0,
+          "media_files": [
+            {
+              "album": "string",
+              "album_id": 0,
+              "business_user": "string",
+              "business_user_id": 0,
+              "created_at": "string",
+              "description": "string",
+              "duration": 0,
+              "file_path": "string",
+              "file_size": 0,
+              "file_type": "image",
+              "id": 0,
+              "mime_type": "string",
+              "thumbnail_path": "string",
+              "title": "string",
+              "updated_at": "string"
+            }
+          ],
+          "phone": "string",
+          "plan_type": "string",
+          "referral_code": "string",
+          "share_links": [
+            {
+              "access_password": "string",
+              "business_user": "string",
+              "business_user_id": 0,
+              "category": {
+                "albums": [
+                  "string"
+                ],
+                "business_user": "string",
+                "business_user_id": 0,
+                "children": [
+                  "string"
+                ],
+                "created_at": "string",
+                "description": "string",
+                "id": 0,
+                "media_type": "image",
+                "name": "string",
+                "parent": "string",
+                "parent_id": 0,
+                "updated_at": "string"
+              },
+              "category_id": 0,
+              "created_at": "string",
+              "description": "string",
+              "expires_at": "string",
+              "id": 0,
+              "media_file": {
+                "album": "string",
+                "album_id": 0,
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "duration": 0,
+                "file_path": "string",
+                "file_size": 0,
+                "file_type": "image",
+                "id": 0,
+                "mime_type": "string",
+                "thumbnail_path": "string",
+                "title": "string",
+                "updated_at": "string"
+              },
+              "media_file_id": 0,
+              "share_type": "single",
+              "title": "string",
+              "token": "string",
+              "updated_at": "string",
+              "view_count": 0
+            }
+          ],
+          "status": "active",
+          "updated_at": "string",
+          "user_referral": {
+            "business_user": "string",
+            "business_user_id": 0,
+            "created_at": "string",
+            "id": 0,
+            "referral_code": "string",
+            "referral_code_id": 0,
+            "referred_at": "string",
+            "sales_name": "string",
+            "sales_referral_code": {
+              "code": "string",
+              "created_at": "string",
+              "id": 0,
+              "is_active": true,
+              "sales_email": "string",
+              "sales_name": "string",
+              "sales_phone": "string",
+              "updated_at": "string",
+              "user_referrals": [
+                "string"
+              ]
+            },
+            "updated_at": "string"
+          },
+          "username": "string"
+        },
+        "business_user_id": 0,
+        "children": [
+          "string"
+        ],
+        "created_at": "string",
+        "description": "string",
+        "id": 0,
+        "media_type": "image",
+        "name": "string",
+        "parent": "string",
+        "parent_id": 0,
+        "updated_at": "string"
+      },
+      "parent_id": 0,
+      "updated_at": "string"
+    }
+  ],
+  "message": "string"
+}
+401	
+Unauthorized
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+500	
+Internal Server Error
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+
+POST
+/api/categories
+创建媒体分类
+
+为B端用户创建媒体文件分类
+
+Parameters
+Try it out
+Name	Description
+request *
+object
+(body)
+创建分类请求
+
+Example Value
+Model
+{
+  "description": "string",
+  "media_type": "image",
+  "name": "string",
+  "parent_id": 0
+}
+Parameter content type
+
+application/json
+Responses
+Response content type
+
+application/json
+Code	Description
+201	
+Created
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": {
+    "albums": [
+      {
+        "business_user": {
+          "categories": [
+            "string"
+          ],
+          "company_name": "string",
+          "created_at": "string",
+          "created_by_admin": {
+            "created_at": "string",
+            "email": "string",
+            "id": 0,
+            "updated_at": "string",
+            "username": "string"
+          },
+          "created_by_admin_id": 0,
+          "email": "string",
+          "id": 0,
+          "media_files": [
+            {
+              "album": "string",
+              "album_id": 0,
+              "business_user": "string",
+              "business_user_id": 0,
+              "created_at": "string",
+              "description": "string",
+              "duration": 0,
+              "file_path": "string",
+              "file_size": 0,
+              "file_type": "image",
+              "id": 0,
+              "mime_type": "string",
+              "thumbnail_path": "string",
+              "title": "string",
+              "updated_at": "string"
+            }
+          ],
+          "phone": "string",
+          "plan_type": "string",
+          "referral_code": "string",
+          "share_links": [
+            {
+              "access_password": "string",
+              "business_user": "string",
+              "business_user_id": 0,
+              "category": "string",
+              "category_id": 0,
+              "created_at": "string",
+              "description": "string",
+              "expires_at": "string",
+              "id": 0,
+              "media_file": {
+                "album": "string",
+                "album_id": 0,
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "duration": 0,
+                "file_path": "string",
+                "file_size": 0,
+                "file_type": "image",
+                "id": 0,
+                "mime_type": "string",
+                "thumbnail_path": "string",
+                "title": "string",
+                "updated_at": "string"
+              },
+              "media_file_id": 0,
+              "share_type": "single",
+              "title": "string",
+              "token": "string",
+              "updated_at": "string",
+              "view_count": 0
+            }
+          ],
+          "status": "active",
+          "updated_at": "string",
+          "user_referral": {
+            "business_user": "string",
+            "business_user_id": 0,
+            "created_at": "string",
+            "id": 0,
+            "referral_code": "string",
+            "referral_code_id": 0,
+            "referred_at": "string",
+            "sales_name": "string",
+            "sales_referral_code": {
+              "code": "string",
+              "created_at": "string",
+              "id": 0,
+              "is_active": true,
+              "sales_email": "string",
+              "sales_name": "string",
+              "sales_phone": "string",
+              "updated_at": "string",
+              "user_referrals": [
+                "string"
+              ]
+            },
+            "updated_at": "string"
+          },
+          "username": "string"
+        },
+        "business_user_id": 0,
+        "category": "string",
+        "category_id": 0,
+        "cover_image": {
+          "album": "string",
+          "album_id": 0,
+          "business_user": {
+            "categories": [
+              "string"
+            ],
+            "company_name": "string",
+            "created_at": "string",
+            "created_by_admin": {
+              "created_at": "string",
+              "email": "string",
+              "id": 0,
+              "updated_at": "string",
+              "username": "string"
+            },
+            "created_by_admin_id": 0,
+            "email": "string",
+            "id": 0,
+            "media_files": [
+              {
+                "album": "string",
+                "album_id": 0,
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "duration": 0,
+                "file_path": "string",
+                "file_size": 0,
+                "file_type": "image",
+                "id": 0,
+                "mime_type": "string",
+                "thumbnail_path": "string",
+                "title": "string",
+                "updated_at": "string"
+              }
+            ],
+            "phone": "string",
+            "plan_type": "string",
+            "referral_code": "string",
+            "share_links": [
+              {
+                "access_password": "string",
+                "business_user": "string",
+                "business_user_id": 0,
+                "category": "string",
+                "category_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "expires_at": "string",
+                "id": 0,
+                "media_file": {
+                  "album": "string",
+                  "album_id": 0,
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "duration": 0,
+                  "file_path": "string",
+                  "file_size": 0,
+                  "file_type": "image",
+                  "id": 0,
+                  "mime_type": "string",
+                  "thumbnail_path": "string",
+                  "title": "string",
+                  "updated_at": "string"
+                },
+                "media_file_id": 0,
+                "share_type": "single",
+                "title": "string",
+                "token": "string",
+                "updated_at": "string",
+                "view_count": 0
+              }
+            ],
+            "status": "active",
+            "updated_at": "string",
+            "user_referral": {
+              "business_user": "string",
+              "business_user_id": 0,
+              "created_at": "string",
+              "id": 0,
+              "referral_code": "string",
+              "referral_code_id": 0,
+              "referred_at": "string",
+              "sales_name": "string",
+              "sales_referral_code": {
+                "code": "string",
+                "created_at": "string",
+                "id": 0,
+                "is_active": true,
+                "sales_email": "string",
+                "sales_name": "string",
+                "sales_phone": "string",
+                "updated_at": "string",
+                "user_referrals": [
+                  "string"
+                ]
+              },
+              "updated_at": "string"
+            },
+            "username": "string"
+          },
+          "business_user_id": 0,
+          "created_at": "string",
+          "description": "string",
+          "duration": 0,
+          "file_path": "string",
+          "file_size": 0,
+          "file_type": "image",
+          "id": 0,
+          "mime_type": "string",
+          "thumbnail_path": "string",
+          "title": "string",
+          "updated_at": "string"
+        },
+        "cover_image_id": 0,
+        "created_at": "string",
+        "description": "string",
+        "id": 0,
+        "media_count": 0,
+        "media_files": [
+          {
+            "album": "string",
+            "album_id": 0,
+            "business_user": {
+              "categories": [
+                "string"
+              ],
+              "company_name": "string",
+              "created_at": "string",
+              "created_by_admin": {
+                "created_at": "string",
+                "email": "string",
+                "id": 0,
+                "updated_at": "string",
+                "username": "string"
+              },
+              "created_by_admin_id": 0,
+              "email": "string",
+              "id": 0,
+              "media_files": [
+                {
+                  "album": "string",
+                  "album_id": 0,
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "duration": 0,
+                  "file_path": "string",
+                  "file_size": 0,
+                  "file_type": "image",
+                  "id": 0,
+                  "mime_type": "string",
+                  "thumbnail_path": "string",
+                  "title": "string",
+                  "updated_at": "string"
+                }
+              ],
+              "phone": "string",
+              "plan_type": "string",
+              "referral_code": "string",
+              "share_links": [
+                {
+                  "access_password": "string",
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "category": "string",
+                  "category_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "expires_at": "string",
+                  "id": 0,
+                  "media_file": {
+                    "album": "string",
+                    "album_id": 0,
+                    "business_user": "string",
+                    "business_user_id": 0,
+                    "created_at": "string",
+                    "description": "string",
+                    "duration": 0,
+                    "file_path": "string",
+                    "file_size": 0,
+                    "file_type": "image",
+                    "id": 0,
+                    "mime_type": "string",
+                    "thumbnail_path": "string",
+                    "title": "string",
+                    "updated_at": "string"
+                  },
+                  "media_file_id": 0,
+                  "share_type": "single",
+                  "title": "string",
+                  "token": "string",
+                  "updated_at": "string",
+                  "view_count": 0
+                }
+              ],
+              "status": "active",
+              "updated_at": "string",
+              "user_referral": {
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "id": 0,
+                "referral_code": "string",
+                "referral_code_id": 0,
+                "referred_at": "string",
+                "sales_name": "string",
+                "sales_referral_code": {
+                  "code": "string",
+                  "created_at": "string",
+                  "id": 0,
+                  "is_active": true,
+                  "sales_email": "string",
+                  "sales_name": "string",
+                  "sales_phone": "string",
+                  "updated_at": "string",
+                  "user_referrals": [
+                    "string"
+                  ]
+                },
+                "updated_at": "string"
+              },
+              "username": "string"
+            },
+            "business_user_id": 0,
+            "created_at": "string",
+            "description": "string",
+            "duration": 0,
+            "file_path": "string",
+            "file_size": 0,
+            "file_type": "image",
+            "id": 0,
+            "mime_type": "string",
+            "thumbnail_path": "string",
+            "title": "string",
+            "updated_at": "string"
+          }
+        ],
+        "name": "string",
+        "sort_order": 0,
+        "updated_at": "string"
+      }
+    ],
+    "business_user": {
+      "categories": [
+        "string"
+      ],
+      "company_name": "string",
+      "created_at": "string",
+      "created_by_admin": {
+        "created_at": "string",
+        "email": "string",
+        "id": 0,
+        "updated_at": "string",
+        "username": "string"
+      },
+      "created_by_admin_id": 0,
+      "email": "string",
+      "id": 0,
+      "media_files": [
+        {
+          "album": "string",
+          "album_id": 0,
+          "business_user": "string",
+          "business_user_id": 0,
+          "created_at": "string",
+          "description": "string",
+          "duration": 0,
+          "file_path": "string",
+          "file_size": 0,
+          "file_type": "image",
+          "id": 0,
+          "mime_type": "string",
+          "thumbnail_path": "string",
+          "title": "string",
+          "updated_at": "string"
+        }
+      ],
+      "phone": "string",
+      "plan_type": "string",
+      "referral_code": "string",
+      "share_links": [
+        {
+          "access_password": "string",
+          "business_user": "string",
+          "business_user_id": 0,
+          "category": "string",
+          "category_id": 0,
+          "created_at": "string",
+          "description": "string",
+          "expires_at": "string",
+          "id": 0,
+          "media_file": {
+            "album": "string",
+            "album_id": 0,
+            "business_user": "string",
+            "business_user_id": 0,
+            "created_at": "string",
+            "description": "string",
+            "duration": 0,
+            "file_path": "string",
+            "file_size": 0,
+            "file_type": "image",
+            "id": 0,
+            "mime_type": "string",
+            "thumbnail_path": "string",
+            "title": "string",
+            "updated_at": "string"
+          },
+          "media_file_id": 0,
+          "share_type": "single",
+          "title": "string",
+          "token": "string",
+          "updated_at": "string",
+          "view_count": 0
+        }
+      ],
+      "status": "active",
+      "updated_at": "string",
+      "user_referral": {
+        "business_user": "string",
+        "business_user_id": 0,
+        "created_at": "string",
+        "id": 0,
+        "referral_code": "string",
+        "referral_code_id": 0,
+        "referred_at": "string",
+        "sales_name": "string",
+        "sales_referral_code": {
+          "code": "string",
+          "created_at": "string",
+          "id": 0,
+          "is_active": true,
+          "sales_email": "string",
+          "sales_name": "string",
+          "sales_phone": "string",
+          "updated_at": "string",
+          "user_referrals": [
+            "string"
+          ]
+        },
+        "updated_at": "string"
+      },
+      "username": "string"
+    },
+    "business_user_id": 0,
+    "children": [
+      "string"
+    ],
+    "created_at": "string",
+    "description": "string",
+    "id": 0,
+    "media_type": "image",
+    "name": "string",
+    "parent": "string",
+    "parent_id": 0,
+    "updated_at": "string"
+  },
+  "message": "string"
+}
+400	
+Bad Request
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+401	
+Unauthorized
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+500	
+Internal Server Error
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+
+
+
+PUT
+/api/categories/{id}
+更新分类信息
+
+更新分类的名称和描述
+
+Parameters
+Try it out
+Name	Description
+id *
+integer
+(path)
+分类ID
+
+id
+request *
+object
+(body)
+更新分类请求
+
+Example Value
+Model
+{
+  "description": "string",
+  "name": "string"
+}
+Parameter content type
+
+application/json
+Responses
+Response content type
+
+application/json
+Code	Description
+200	
+OK
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": {
+    "albums": [
+      {
+        "business_user": {
+          "categories": [
+            "string"
+          ],
+          "company_name": "string",
+          "created_at": "string",
+          "created_by_admin": {
+            "created_at": "string",
+            "email": "string",
+            "id": 0,
+            "updated_at": "string",
+            "username": "string"
+          },
+          "created_by_admin_id": 0,
+          "email": "string",
+          "id": 0,
+          "media_files": [
+            {
+              "album": "string",
+              "album_id": 0,
+              "business_user": "string",
+              "business_user_id": 0,
+              "created_at": "string",
+              "description": "string",
+              "duration": 0,
+              "file_path": "string",
+              "file_size": 0,
+              "file_type": "image",
+              "id": 0,
+              "mime_type": "string",
+              "thumbnail_path": "string",
+              "title": "string",
+              "updated_at": "string"
+            }
+          ],
+          "phone": "string",
+          "plan_type": "string",
+          "referral_code": "string",
+          "share_links": [
+            {
+              "access_password": "string",
+              "business_user": "string",
+              "business_user_id": 0,
+              "category": "string",
+              "category_id": 0,
+              "created_at": "string",
+              "description": "string",
+              "expires_at": "string",
+              "id": 0,
+              "media_file": {
+                "album": "string",
+                "album_id": 0,
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "duration": 0,
+                "file_path": "string",
+                "file_size": 0,
+                "file_type": "image",
+                "id": 0,
+                "mime_type": "string",
+                "thumbnail_path": "string",
+                "title": "string",
+                "updated_at": "string"
+              },
+              "media_file_id": 0,
+              "share_type": "single",
+              "title": "string",
+              "token": "string",
+              "updated_at": "string",
+              "view_count": 0
+            }
+          ],
+          "status": "active",
+          "updated_at": "string",
+          "user_referral": {
+            "business_user": "string",
+            "business_user_id": 0,
+            "created_at": "string",
+            "id": 0,
+            "referral_code": "string",
+            "referral_code_id": 0,
+            "referred_at": "string",
+            "sales_name": "string",
+            "sales_referral_code": {
+              "code": "string",
+              "created_at": "string",
+              "id": 0,
+              "is_active": true,
+              "sales_email": "string",
+              "sales_name": "string",
+              "sales_phone": "string",
+              "updated_at": "string",
+              "user_referrals": [
+                "string"
+              ]
+            },
+            "updated_at": "string"
+          },
+          "username": "string"
+        },
+        "business_user_id": 0,
+        "category": "string",
+        "category_id": 0,
+        "cover_image": {
+          "album": "string",
+          "album_id": 0,
+          "business_user": {
+            "categories": [
+              "string"
+            ],
+            "company_name": "string",
+            "created_at": "string",
+            "created_by_admin": {
+              "created_at": "string",
+              "email": "string",
+              "id": 0,
+              "updated_at": "string",
+              "username": "string"
+            },
+            "created_by_admin_id": 0,
+            "email": "string",
+            "id": 0,
+            "media_files": [
+              {
+                "album": "string",
+                "album_id": 0,
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "duration": 0,
+                "file_path": "string",
+                "file_size": 0,
+                "file_type": "image",
+                "id": 0,
+                "mime_type": "string",
+                "thumbnail_path": "string",
+                "title": "string",
+                "updated_at": "string"
+              }
+            ],
+            "phone": "string",
+            "plan_type": "string",
+            "referral_code": "string",
+            "share_links": [
+              {
+                "access_password": "string",
+                "business_user": "string",
+                "business_user_id": 0,
+                "category": "string",
+                "category_id": 0,
+                "created_at": "string",
+                "description": "string",
+                "expires_at": "string",
+                "id": 0,
+                "media_file": {
+                  "album": "string",
+                  "album_id": 0,
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "duration": 0,
+                  "file_path": "string",
+                  "file_size": 0,
+                  "file_type": "image",
+                  "id": 0,
+                  "mime_type": "string",
+                  "thumbnail_path": "string",
+                  "title": "string",
+                  "updated_at": "string"
+                },
+                "media_file_id": 0,
+                "share_type": "single",
+                "title": "string",
+                "token": "string",
+                "updated_at": "string",
+                "view_count": 0
+              }
+            ],
+            "status": "active",
+            "updated_at": "string",
+            "user_referral": {
+              "business_user": "string",
+              "business_user_id": 0,
+              "created_at": "string",
+              "id": 0,
+              "referral_code": "string",
+              "referral_code_id": 0,
+              "referred_at": "string",
+              "sales_name": "string",
+              "sales_referral_code": {
+                "code": "string",
+                "created_at": "string",
+                "id": 0,
+                "is_active": true,
+                "sales_email": "string",
+                "sales_name": "string",
+                "sales_phone": "string",
+                "updated_at": "string",
+                "user_referrals": [
+                  "string"
+                ]
+              },
+              "updated_at": "string"
+            },
+            "username": "string"
+          },
+          "business_user_id": 0,
+          "created_at": "string",
+          "description": "string",
+          "duration": 0,
+          "file_path": "string",
+          "file_size": 0,
+          "file_type": "image",
+          "id": 0,
+          "mime_type": "string",
+          "thumbnail_path": "string",
+          "title": "string",
+          "updated_at": "string"
+        },
+        "cover_image_id": 0,
+        "created_at": "string",
+        "description": "string",
+        "id": 0,
+        "media_count": 0,
+        "media_files": [
+          {
+            "album": "string",
+            "album_id": 0,
+            "business_user": {
+              "categories": [
+                "string"
+              ],
+              "company_name": "string",
+              "created_at": "string",
+              "created_by_admin": {
+                "created_at": "string",
+                "email": "string",
+                "id": 0,
+                "updated_at": "string",
+                "username": "string"
+              },
+              "created_by_admin_id": 0,
+              "email": "string",
+              "id": 0,
+              "media_files": [
+                {
+                  "album": "string",
+                  "album_id": 0,
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "duration": 0,
+                  "file_path": "string",
+                  "file_size": 0,
+                  "file_type": "image",
+                  "id": 0,
+                  "mime_type": "string",
+                  "thumbnail_path": "string",
+                  "title": "string",
+                  "updated_at": "string"
+                }
+              ],
+              "phone": "string",
+              "plan_type": "string",
+              "referral_code": "string",
+              "share_links": [
+                {
+                  "access_password": "string",
+                  "business_user": "string",
+                  "business_user_id": 0,
+                  "category": "string",
+                  "category_id": 0,
+                  "created_at": "string",
+                  "description": "string",
+                  "expires_at": "string",
+                  "id": 0,
+                  "media_file": {
+                    "album": "string",
+                    "album_id": 0,
+                    "business_user": "string",
+                    "business_user_id": 0,
+                    "created_at": "string",
+                    "description": "string",
+                    "duration": 0,
+                    "file_path": "string",
+                    "file_size": 0,
+                    "file_type": "image",
+                    "id": 0,
+                    "mime_type": "string",
+                    "thumbnail_path": "string",
+                    "title": "string",
+                    "updated_at": "string"
+                  },
+                  "media_file_id": 0,
+                  "share_type": "single",
+                  "title": "string",
+                  "token": "string",
+                  "updated_at": "string",
+                  "view_count": 0
+                }
+              ],
+              "status": "active",
+              "updated_at": "string",
+              "user_referral": {
+                "business_user": "string",
+                "business_user_id": 0,
+                "created_at": "string",
+                "id": 0,
+                "referral_code": "string",
+                "referral_code_id": 0,
+                "referred_at": "string",
+                "sales_name": "string",
+                "sales_referral_code": {
+                  "code": "string",
+                  "created_at": "string",
+                  "id": 0,
+                  "is_active": true,
+                  "sales_email": "string",
+                  "sales_name": "string",
+                  "sales_phone": "string",
+                  "updated_at": "string",
+                  "user_referrals": [
+                    "string"
+                  ]
+                },
+                "updated_at": "string"
+              },
+              "username": "string"
+            },
+            "business_user_id": 0,
+            "created_at": "string",
+            "description": "string",
+            "duration": 0,
+            "file_path": "string",
+            "file_size": 0,
+            "file_type": "image",
+            "id": 0,
+            "mime_type": "string",
+            "thumbnail_path": "string",
+            "title": "string",
+            "updated_at": "string"
+          }
+        ],
+        "name": "string",
+        "sort_order": 0,
+        "updated_at": "string"
+      }
+    ],
+    "business_user": {
+      "categories": [
+        "string"
+      ],
+      "company_name": "string",
+      "created_at": "string",
+      "created_by_admin": {
+        "created_at": "string",
+        "email": "string",
+        "id": 0,
+        "updated_at": "string",
+        "username": "string"
+      },
+      "created_by_admin_id": 0,
+      "email": "string",
+      "id": 0,
+      "media_files": [
+        {
+          "album": "string",
+          "album_id": 0,
+          "business_user": "string",
+          "business_user_id": 0,
+          "created_at": "string",
+          "description": "string",
+          "duration": 0,
+          "file_path": "string",
+          "file_size": 0,
+          "file_type": "image",
+          "id": 0,
+          "mime_type": "string",
+          "thumbnail_path": "string",
+          "title": "string",
+          "updated_at": "string"
+        }
+      ],
+      "phone": "string",
+      "plan_type": "string",
+      "referral_code": "string",
+      "share_links": [
+        {
+          "access_password": "string",
+          "business_user": "string",
+          "business_user_id": 0,
+          "category": "string",
+          "category_id": 0,
+          "created_at": "string",
+          "description": "string",
+          "expires_at": "string",
+          "id": 0,
+          "media_file": {
+            "album": "string",
+            "album_id": 0,
+            "business_user": "string",
+            "business_user_id": 0,
+            "created_at": "string",
+            "description": "string",
+            "duration": 0,
+            "file_path": "string",
+            "file_size": 0,
+            "file_type": "image",
+            "id": 0,
+            "mime_type": "string",
+            "thumbnail_path": "string",
+            "title": "string",
+            "updated_at": "string"
+          },
+          "media_file_id": 0,
+          "share_type": "single",
+          "title": "string",
+          "token": "string",
+          "updated_at": "string",
+          "view_count": 0
+        }
+      ],
+      "status": "active",
+      "updated_at": "string",
+      "user_referral": {
+        "business_user": "string",
+        "business_user_id": 0,
+        "created_at": "string",
+        "id": 0,
+        "referral_code": "string",
+        "referral_code_id": 0,
+        "referred_at": "string",
+        "sales_name": "string",
+        "sales_referral_code": {
+          "code": "string",
+          "created_at": "string",
+          "id": 0,
+          "is_active": true,
+          "sales_email": "string",
+          "sales_name": "string",
+          "sales_phone": "string",
+          "updated_at": "string",
+          "user_referrals": [
+            "string"
+          ]
+        },
+        "updated_at": "string"
+      },
+      "username": "string"
+    },
+    "business_user_id": 0,
+    "children": [
+      "string"
+    ],
+    "created_at": "string",
+    "description": "string",
+    "id": 0,
+    "media_type": "image",
+    "name": "string",
+    "parent": "string",
+    "parent_id": 0,
+    "updated_at": "string"
+  },
+  "message": "string"
+}
+400	
+Bad Request
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+401	
+Unauthorized
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+404	
+Not Found
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+500	
+Internal Server Error
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+
+DELETE
+/api/categories/{id}
+删除分类
+
+删除分类，如果分类下有子分类或媒体文件则不允许删除
+
+Parameters
+Try it out
+Name	Description
+id *
+integer
+(path)
+分类ID
+
+id
+Responses
+Response content type
+
+application/json
+Code	Description
+200	
+OK
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+400	
+Bad Request
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+401	
+Unauthorized
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+404	
+Not Found
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}
+500	
+Internal Server Error
+
+Example Value
+Model
+{
+  "code": 0,
+  "data": "string",
+  "message": "string"
+}

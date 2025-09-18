@@ -10,8 +10,22 @@
       </button>
     </div>
 
+    <!-- 加载状态 -->
+    <div v-if="loading" class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>正在加载图集...</p>
+    </div>
+
+    <!-- 错误状态 -->
+    <div v-else-if="error" class="error-state">
+      <div class="error-icon">⚠️</div>
+      <h3>加载失败</h3>
+      <p>{{ error }}</p>
+      <button class="retry-btn" @click="loadAlbums">重新加载</button>
+    </div>
+
     <!-- 图组网格 -->
-    <div class="groups-grid">
+    <div v-else class="groups-grid">
       <div 
         v-for="group in imageGroups" 
         :key="group.id" 
@@ -155,6 +169,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import { albumApi } from '@/services/api';
 
 const router = useRouter();
 const route = useRoute();
@@ -172,32 +187,9 @@ const folderName = computed(() => {
 });
 
 // 图组数据
-const imageGroups = ref([
-  {
-    id: 1,
-    title: '城市风光',
-    description: '记录城市中的美丽建筑和街景',
-    imageCount: 15,
-    coverImage: 'https://picsum.photos/300/200?random=1',
-    createdAt: '2024-01-15'
-  },
-  {
-    id: 2,
-    title: '自然风光',
-    description: '大自然的壮丽景色',
-    imageCount: 23,
-    coverImage: 'https://picsum.photos/300/200?random=2',
-    createdAt: '2024-01-18'
-  },
-  {
-    id: 3,
-    title: '夜景摄影',
-    description: '城市的夜晚魅力',
-    imageCount: 8,
-    coverImage: 'https://picsum.photos/300/200?random=3',
-    createdAt: '2024-01-22'
-  }
-]);
+const imageGroups = ref([]);
+const loading = ref(false);
+const error = ref(null);
 
 // 弹窗状态
 const showCreateGroup = ref(false);
@@ -227,24 +219,94 @@ const openGroup = (group) => {
   router.push(`/group-management/${folderId.value}/${group.id}`);
 };
 
-const createGroup = () => {
+// 加载图集列表
+const loadAlbums = async () => {
+  if (!folderId.value) return;
+  
+  loading.value = true;
+  error.value = null;
+  
+  try {
+    const response = await albumApi.getAlbumsByCategory(folderId.value, {
+      page: 1,
+      page_size: 100,
+      sort_by: 'created_at',
+      sort_order: 'desc'
+    });
+    
+    if (response.code === 200) {
+      // 将API返回的数据映射为页面需要的数据结构
+      imageGroups.value = response.data.albums.map(album => ({
+        id: album.id,
+        title: album.name,
+        description: album.description || '暂无描述',
+        imageCount: album.media_count || 0,
+        coverImage: album.cover_image ? album.cover_image.thumbnail_path : 
+                   `https://picsum.photos/300/200?random=${album.id}`,
+        createdAt: album.created_at ? album.created_at.split('T')[0] : '未知日期'
+      }));
+    } else {
+      error.value = response.message || '获取图集列表失败';
+    }
+  } catch (err) {
+    console.error('加载图集失败:', err);
+    error.value = '加载图集失败，请稍后重试';
+  } finally {
+    loading.value = false;
+  }
+};
+
+const createGroup = async () => {
   if (!newGroup.value.title.trim()) return;
+  
   isUploading.value = true;
-  setTimeout(() => {
-    const group = {
-      id: Date.now(),
-      title: newGroup.value.title.trim(),
-      description: newGroup.value.description.trim(),
-      imageCount: previewImages.value.length,
-      coverImage: previewImages.value.length > 0 ? previewImages.value[0].url : '',
-      createdAt: new Date().toISOString().split('T')[0]
+  
+  try {
+    // 1. 先创建图集
+    const albumData = {
+      category_id: parseInt(folderId.value),
+      name: newGroup.value.title.trim(),
+      description: newGroup.value.description.trim()
     };
-    imageGroups.value.unshift(group);
+    
+    const createResponse = await albumApi.createAlbum(albumData);
+    
+    if (createResponse.code !== 200) {
+      throw new Error(createResponse.message || '创建图集失败');
+    }
+    
+    const newAlbum = createResponse.data;
+    
+    // 2. 如果有图片，批量上传到图集
+    if (previewImages.value.length > 0) {
+      const files = previewImages.value.map(img => img.file);
+      
+      try {
+        await albumApi.uploadMediaToAlbum(newAlbum.id, files
+        // , {
+        //   album_id: newAlbum.id
+        // }
+      );
+      } catch (uploadError) {
+        console.error('图片上传失败:', uploadError);
+        // 图片上传失败不影响图集创建，继续执行
+      }
+    }
+    
+    // 3. 重新加载图集列表
+    await loadAlbums();
+    
+    // 4. 重置表单并关闭弹窗
     newGroup.value = { title: '', description: '' };
     previewImages.value = [];
-    isUploading.value = false;
     closeModal();
-  }, 800);
+    
+  } catch (error) {
+    console.error('创建图集失败:', error);
+    alert(error.message || '创建图集失败，请稍后重试');
+  } finally {
+    isUploading.value = false;
+  }
 };
 
 const triggerFileInput = () => {
@@ -311,22 +373,42 @@ const editGroup = (group) => {
   showEditGroup.value = true;
 };
 
-const confirmEdit = () => {
+const confirmEdit = async () => {
   if (editGroupData.value.id && editGroupData.value.title.trim()) {
-    const group = imageGroups.value.find(g => g.id === editGroupData.value.id);
-    if (group) {
-      group.title = editGroupData.value.title.trim();
-      group.description = editGroupData.value.description.trim();
+    try {
+      const updateData = {
+        name: editGroupData.value.title.trim(),
+        description: editGroupData.value.description.trim()
+      };
+      
+      const response = await albumApi.updateAlbum(editGroupData.value.id, updateData);
+      
+      if (response.code === 200) {
+        await loadAlbums();
+        closeModal();
+      } else {
+        alert(response.message || '更新图集失败');
+      }
+    } catch (error) {
+      console.error('更新图集失败:', error);
+      alert('更新图集失败，请稍后重试');
     }
-    closeModal();
   }
 };
 
-const deleteGroup = (group) => {
+const deleteGroup = async (group) => {
   if (confirm(`确定要删除图组 "${group.title}" 吗？此操作将删除该图组及其所有图片。`)) {
-    const index = imageGroups.value.findIndex(g => g.id === group.id);
-    if (index > -1) {
-      imageGroups.value.splice(index, 1);
+    try {
+      const response = await albumApi.deleteAlbum(group.id);
+      
+      if (response.code === 200) {
+        await loadAlbums();
+      } else {
+        alert(response.message || '删除图集失败');
+      }
+    } catch (error) {
+      console.error('删除图集失败:', error);
+      alert('删除图集失败，请稍后重试');
     }
   }
 };
@@ -341,6 +423,7 @@ const closeModal = () => {
 // 初始化
 onMounted(() => {
   console.log('打开文件夹:', folderId.value);
+  loadAlbums();
 });
 </script>
 
@@ -807,6 +890,52 @@ onMounted(() => {
     font-size: 0.8em;
     opacity: 0.8;
   }
+
+.loading-state,
+.error-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-icon {
+  font-size: 4em;
+  margin-bottom: 20px;
+}
+
+.retry-btn {
+  padding: 10px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
+
+.retry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
 
 /* 响应式设计 */
 @media (max-width: 768px) {

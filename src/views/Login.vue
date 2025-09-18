@@ -8,26 +8,53 @@
         <div class="shape shape-4"></div>
       </div>
     </div>
-    
+
     <div class="login-card">
       <div class="login-header">
         <div class="logo">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 8v8M8 12h8"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
           </svg>
         </div>
         <h1>摄影云端</h1>
         <p>捕捉美好瞬间，存储永恒记忆</p>
       </div>
-      
+
       <form @submit.prevent="handleLogin" class="login-form">
         <div class="form-group">
           <label for="username">用户名</label>
           <div class="input-wrapper">
             <svg class="input-icon" viewBox="0 0 24 24" fill="none">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path
+                d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="12"
+                cy="7"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
             </svg>
             <input
               id="username"
@@ -39,13 +66,28 @@
             />
           </div>
         </div>
-        
+
         <div class="form-group">
           <label for="password">密码</label>
           <div class="input-wrapper">
             <svg class="input-icon" viewBox="0 0 24 24" fill="none">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
-              <circle cx="12" cy="7" r="3" stroke="currentColor" stroke-width="2"/>
+              <rect
+                x="3"
+                y="11"
+                width="18"
+                height="11"
+                rx="2"
+                ry="2"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <circle
+                cx="12"
+                cy="7"
+                r="3"
+                stroke="currentColor"
+                stroke-width="2"
+              />
             </svg>
             <input
               id="password"
@@ -55,19 +97,44 @@
               required
               class="form-input"
             />
-            <button type="button" class="password-toggle" @click="togglePassword">
+            <button
+              type="button"
+              class="password-toggle"
+              @click="togglePassword"
+            >
               <svg v-if="!showPassword" viewBox="0 0 24 24" fill="none">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
-                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                <path
+                  d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
               </svg>
               <svg v-else viewBox="0 0 24 24" fill="none">
-                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke="currentColor" stroke-width="2"/>
-                <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"/>
+                <path
+                  d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <line
+                  x1="1"
+                  y1="1"
+                  x2="23"
+                  y2="23"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
               </svg>
             </button>
           </div>
         </div>
-        
+
         <button type="submit" class="login-button" :disabled="loading">
           <span v-if="!loading">登 录</span>
           <span v-else class="loading">
@@ -76,77 +143,419 @@
           </span>
         </button>
       </form>
-      
+
       <div class="login-footer">
-        <p>还没有账号？<a href="#" @click.prevent="showRegister = true">立即注册</a></p>
+        <p>
+          还没有账号？<a href="#" @click.prevent="showRegister = true"
+            >立即注册</a
+          >
+        </p>
+        <p style="margin-top: 10px; font-size: 12px; color: #666">
+          测试账号：用户名和密码均为 "image"
+        </p>
       </div>
     </div>
-    
+
     <!-- 注册弹窗 -->
-    <div v-if="showRegister" class="modal-overlay" @click="showRegister = false">
-      <div class="modal-content" @click.stop>
-        <h2>用户注册</h2>
-        <p>注册功能暂未开放，请联系管理员</p>
-        <button @click="showRegister = false" class="close-button">关闭</button>
+    <div v-if="showRegister" class="modal-overlay" @click="closeRegister">
+      <div class="modal-content register-modal" @click.stop>
+        <div class="modal-header">
+          <h2>用户注册</h2>
+          <button @click="closeRegister" class="modal-close">×</button>
+        </div>
+
+        <form @submit.prevent="handleRegister" class="register-form">
+          <div class="form-group">
+            <label for="reg-referral">推荐码 *</label>
+            <input
+              id="reg-referral"
+              v-model="registerForm.referral_code"
+              type="text"
+              placeholder="请输入推荐码"
+              required
+              class="form-input"
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-username">账号 *</label>
+              <input
+                id="reg-username"
+                v-model="registerForm.username"
+                type="text"
+                placeholder="3-50个字符"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="reg-email">邮箱 *</label>
+              <input
+                id="reg-email"
+                v-model="registerForm.email"
+                type="email"
+                placeholder="请输入邮箱"
+                required
+                class="form-input"
+              />
+            </div> -->
+          </div>
+          <div class="form-group">
+            <label for="reg-password">密码 *</label>
+            <div class="input-wrapper">
+              <input
+                id="reg-password"
+                v-model="registerForm.password"
+                :type="showRegPassword ? 'text' : 'password'"
+                placeholder="至少6位密码"
+                required
+                class="form-input"
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                @click="toggleRegPassword"
+              >
+                <svg v-if="!showRegPassword" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+                <svg v-else viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <line
+                    x1="1"
+                    y1="1"
+                    x2="23"
+                    y2="23"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-phone">手机号 *</label>
+              <input
+                id="reg-phone"
+                v-model="registerForm.phone"
+                type="tel"
+                placeholder="请输入手机号"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-company">昵称 *</label>
+              <input
+                id="reg-company"
+                v-model="registerForm.company_name"
+                type="text"
+                placeholder="请输入昵称"
+                required
+                class="form-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-group captcha-group">
+            <label for="reg-captcha">验证码 *</label>
+            <div class="captcha-wrapper">
+              <input
+                id="reg-captcha"
+                v-model="registerForm.captcha"
+                type="text"
+                placeholder="请输入验证码"
+                required
+                class="form-input captcha-input"
+              />
+              <button
+                type="button"
+                class="send-captcha-btn"
+                :disabled="captchaCooldown > 0"
+                @click="sendCaptcha"
+              >
+                {{ captchaCooldown > 0 ? `${captchaCooldown}s` : "发送验证码" }}
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="register-button" :disabled="loading">
+            <span v-if="!loading">立即注册</span>
+            <span v-else class="loading">
+              <div class="spinner"></div>
+              注册中...
+            </span>
+          </button>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { userApi } from '@/services/api'
+import { userApi } from "@/services/api";
 
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     return {
       form: {
-        username: '',
-        password: ''
+        username: "",
+        password: "",
+      },
+      registerForm: {
+        username: "",
+        email: "",
+        phone: "",
+        password: "",
+        company_name: "",
+        referral_code: "",
+        captcha: "",
       },
       loading: false,
       showPassword: false,
-      showRegister: false
+      showRegPassword: false,
+      showRegister: false,
+      captchaCooldown: 0,
+      captchaTimer: null,
+    };
+  },
+  beforeDestroy() {
+    if (this.captchaTimer) {
+      clearInterval(this.captchaTimer);
+      this.captchaTimer = null;
     }
   },
+
   methods: {
     togglePassword() {
-      this.showPassword = !this.showPassword
+      this.showPassword = !this.showPassword;
     },
-    
+
+    toggleRegPassword() {
+      this.showRegPassword = !this.showRegPassword;
+    },
+
+    closeRegister() {
+      this.showRegister = false;
+      this.resetRegisterForm();
+    },
+
+    resetRegisterForm() {
+      this.registerForm = {
+        username: "",
+        email: "",
+        phone: "",
+        password: "",
+        company_name: "",
+        referral_code: "",
+        captcha: "",
+      };
+      if (this.captchaTimer) {
+        clearInterval(this.captchaTimer);
+        this.captchaTimer = null;
+      }
+      this.captchaCooldown = 0;
+    },
+
+    async sendCaptcha() {
+      if (!this.registerForm.phone) {
+        alert("请先输入手机号");
+        return;
+      }
+
+      if (!/^1[3-9]\d{9}$/.test(this.registerForm.phone)) {
+        alert("请输入正确的手机号格式");
+        return;
+      }
+
+      this.loading = true;
+
+      try {
+        const response = await userApi.sendCaptcha({
+          phone: this.registerForm.phone,
+          type: "register",
+        });
+
+        if (response.code === 200) {
+          alert("验证码已发送到您的手机");
+          this.startCaptchaCooldown();
+        } else {
+          alert(response.message || "发送失败");
+        }
+      } catch (error) {
+        console.error("发送验证码错误:", error);
+        alert("发送失败，请稍后重试");
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    startCaptchaCooldown() {
+      this.captchaCooldown = 60;
+      this.captchaTimer = setInterval(() => {
+        this.captchaCooldown--;
+        if (this.captchaCooldown <= 0) {
+          clearInterval(this.captchaTimer);
+          this.captchaTimer = null;
+        }
+      }, 1000);
+    },
+
+    async handleRegister() {
+      // 表单验证
+      if (
+        !this.registerForm.username ||
+        this.registerForm.username.length < 3
+      ) {
+        alert("用户名至少需要3个字符");
+        return;
+      }
+
+      if (
+        !this.registerForm.email ||
+        !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.registerForm.email)
+      ) {
+        alert("请输入正确的邮箱格式");
+        return;
+      }
+
+      if (
+        !this.registerForm.phone ||
+        !/^1[3-9]\d{9}$/.test(this.registerForm.phone)
+      ) {
+        alert("请输入正确的手机号格式");
+        return;
+      }
+
+      if (
+        !this.registerForm.password ||
+        this.registerForm.password.length < 6
+      ) {
+        alert("密码至少需要6位");
+        return;
+      }
+
+      if (!this.registerForm.referral_code) {
+        alert("请输入推荐码");
+        return;
+      }
+
+      if (!this.registerForm.captcha) {
+        alert("请输入验证码");
+        return;
+      }
+
+      this.loading = true;
+
+      try {
+        const response = await userApi.register(this.registerForm);
+
+        if (
+          response.code === 200 &&
+          response.data &&
+          response.data.access_token
+        ) {
+          // 注册成功，自动登录
+          localStorage.setItem("token", response.data.access_token);
+          localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+
+          alert("注册成功！正在跳转到首页...");
+
+          setTimeout(() => {
+            this.$router.push({ name: "Home" });
+          }, 1000);
+        } else {
+          alert(response.message || "注册失败");
+        }
+      } catch (error) {
+        console.error("注册错误:", error);
+        if (error.message && error.message.includes("409")) {
+          alert("该用户名、邮箱或手机号已被注册");
+        } else {
+          alert("注册失败，请稍后重试");
+        }
+      } finally {
+        this.loading = false;
+      }
+    },
+
     async handleLogin() {
       if (!this.form.username || !this.form.password) {
-        alert('请填写完整的登录信息')
-        return
+        alert("请填写完整的登录信息");
+        return;
       }
-      
-      this.loading = true
-      
+
+      this.loading = true;
+
       try {
         const response = await userApi.login({
           username: this.form.username,
-          password: this.form.password
-        })
-        
-        if (response.code === '000000' && response.data.token) {
+          password: this.form.password,
+        });
+        console.log(response, "response");
+
+        // B端接口格式：{code: 0, data: {...}, message: ''}
+        if (
+          response.code === 200 &&
+          response.data &&
+          response.data.access_token
+        ) {
           // 保存token到localStorage
-          localStorage.setItem('token', response.data.token)
-          localStorage.setItem('userInfo', JSON.stringify(response.data))
-          
-          // 跳转到首页
-          this.$router.push('/')
+          localStorage.setItem("token", response.data.access_token);
+          localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+
+          console.log("登录成功，准备跳转首页");
+          console.log("Token:", response.data.access_token);
+          console.log("用户信息:", response.data.user);
+
+          // 登录成功
+          console.log("登录成功，正在跳转首页...");
+          alert("登录成功！正在跳转到首页...");
+
+          // 延迟跳转，确保用户看到成功提示
+          setTimeout(() => {
+            this.$router.push({ name: "Home" });
+          }, 1000);
         } else {
-          alert(response.msg || '登录失败')
+          // 处理401等错误状态
+          if (response.code === 401) {
+            alert("用户名或密码错误，请检查您的登录信息");
+          } else {
+            alert(response.message || response.msg || "登录失败");
+          }
         }
       } catch (error) {
-        console.error('登录错误:', error)
-        alert('登录失败，请检查网络连接')
+        console.error("登录错误:", error);
+        if (error.message && error.message.includes("401")) {
+          alert("用户名或密码错误，请重新输入");
+        } else {
+          alert("登录失败，请检查网络连接");
+        }
       } finally {
-        this.loading = false
+        this.loading = false;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -369,8 +778,12 @@ export default {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .login-footer {
@@ -408,35 +821,174 @@ export default {
 
 .modal-content {
   background: white;
-  padding: 40px;
-  border-radius: 20px;
-  text-align: center;
-  max-width: 400px;
+  border-radius: 12px;
+  padding: 0;
+  max-width: 500px;
   width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-.modal-content h2 {
+.register-modal {
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+  margin: 0;
   color: #333;
-  margin-bottom: 20px;
+  font-size: 24px;
 }
 
-.modal-content p {
-  color: #666;
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+.register-form {
+  padding: 30px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.captcha-group {
   margin-bottom: 30px;
+}
+
+.captcha-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.captcha-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.send-captcha-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.send-captcha-btn:hover:not(:disabled) {
+  background: #5a6fd8;
+  transform: translateY(-1px);
+}
+
+.send-captcha-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.register-button {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.register-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.register-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .close-button {
   background: #667eea;
   color: white;
   border: none;
-  padding: 12px 30px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 16px;
 }
 
 .close-button:hover {
   background: #5a6fd8;
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .login-card {
+    padding: 40px 30px;
+    margin: 20px;
+  }
+
+  .register-form {
+    padding: 20px;
+  }
+
+  .modal-content {
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
+    border-radius: 15px;
+  }
+
+  .login-header h1 {
+    font-size: 24px;
+  }
+
+  .form-input {
+    padding: 12px 12px 12px 45px;
+    font-size: 14px;
+  }
+
+  .send-captcha-btn {
+    padding: 12px 15px;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -444,7 +996,7 @@ export default {
     margin: 20px;
     padding: 40px 30px;
   }
-  
+
   .login-header h1 {
     font-size: 24px;
   }

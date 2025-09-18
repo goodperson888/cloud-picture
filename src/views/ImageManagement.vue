@@ -15,8 +15,22 @@
       </button>
     </div>
 
+    <!-- 加载状态 -->
+    <div v-if="loading" class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>正在加载分类...</p>
+    </div>
+
+    <!-- 错误状态 -->
+    <div v-else-if="error" class="error-state">
+      <div class="error-icon">⚠️</div>
+      <h3>加载失败</h3>
+      <p>{{ error }}</p>
+      <button class="retry-btn" @click="loadCategories">重试</button>
+    </div>
+
     <!-- 文件夹网格 -->
-    <div class="folders-grid">
+    <div v-else class="folders-grid">
       <div 
         v-for="folder in folders" 
         :key="folder.id" 
@@ -28,7 +42,7 @@
         </div>
         <div class="folder-info">
           <h3 class="folder-name">{{ folder.name }}</h3>
-          <p class="folder-count">{{ folder.imageCount }} 张图片</p>
+          <p class="folder-count">{{ folder.imageCount }} 个图集</p>
           <p class="folder-date">{{ folder.createdAt }}</p>
         </div>
         <div class="folder-actions" @click.stop>
@@ -40,7 +54,7 @@
       <!-- 空状态 -->
       <div v-if="folders.length === 0" class="empty-state">
         <div class="empty-icon">📂</div>
-        <h3>暂无文件夹</h3>
+        <h3>暂无分类</h3>
         <p>点击右上角"新建文件夹"开始管理您的图片</p>
       </div>
     </div>
@@ -82,38 +96,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { categoryApi } from '@/services/api.js';
 
 const router = useRouter();
 
-// 文件夹数据
-const folders = ref([
-  {
-    id: 1,
-    name: '风光摄影',
-    imageCount: 45,
-    createdAt: '2024-01-15'
-  },
-  {
-    id: 2,
-    name: '人像摄影',
-    imageCount: 32,
-    createdAt: '2024-01-20'
-  },
-  {
-    id: 3,
-    name: '建筑摄影',
-    imageCount: 28,
-    createdAt: '2024-02-01'
-  },
-  {
-    id: 4,
-    name: '美食摄影',
-    imageCount: 15,
-    createdAt: '2024-02-10'
-  }
-]);
+// 文件夹数据（分类数据）
+const folders = ref([]);
+const loading = ref(false);
+const error = ref(null);
 
 // 弹窗状态
 const showCreateFolder = ref(false);
@@ -122,18 +114,57 @@ const newFolderName = ref('');
 const renameFolderName = ref('');
 const currentFolder = ref(null);
 
-// 方法
-const createFolder = () => {
+// 获取分类列表
+const loadCategories = async () => {
+  loading.value = true;
+  error.value = null;
+  try {
+    const response = await categoryApi.getCategories({ media_type: 'image' });
+    if (response.code === 200 && response.data) {
+      // 将分类数据映射为文件夹格式
+      folders.value = response.data.map(category => ({
+        id: category.id,
+        name: category.name,
+        imageCount: category.albums?.length || 0, // 使用albums数量作为图片数量
+        createdAt: category.created_at ? category.created_at.split('T')[0] : new Date().toISOString().split('T')[0],
+        description: category.description,
+        mediaType: category.media_type
+      }));
+    } else {
+      throw new Error('获取分类数据失败');
+    }
+  } catch (err) {
+    console.error('加载分类失败:', err);
+    error.value = err.message || '加载分类失败';
+    // 如果接口失败，使用空数组
+    folders.value = [];
+  } finally {
+    loading.value = false;
+  }
+};
+
+// 创建文件夹（创建分类）
+const createFolder = async () => {
   if (newFolderName.value.trim()) {
-    const newFolder = {
-      id: Date.now(),
-      name: newFolderName.value.trim(),
-      imageCount: 0,
-      createdAt: new Date().toISOString().split('T')[0]
-    };
-    folders.value.push(newFolder);
-    newFolderName.value = '';
-    closeModal();
+    try {
+      const response = await categoryApi.createCategory({
+        name: newFolderName.value.trim(),
+        media_type: 'image',
+        description: ''
+      });
+      
+      if (response.code === 200||response.code === 201) {
+        // 重新加载分类列表
+        await loadCategories();
+        newFolderName.value = '';
+        closeModal();
+      } else {
+        throw new Error(response.message || '创建分类失败');
+      }
+    } catch (err) {
+      console.error('创建分类失败:', err);
+      alert('创建分类失败: ' + (err.message || '未知错误'));
+    }
   }
 };
 
@@ -143,18 +174,39 @@ const renameFolder = (folder) => {
   showRenameFolder.value = true;
 };
 
-const confirmRename = () => {
+const confirmRename = async () => {
   if (currentFolder.value && renameFolderName.value.trim()) {
-    currentFolder.value.name = renameFolderName.value.trim();
-    closeModal();
+    try {
+      const response = await categoryApi.updateCategory(currentFolder.value.id, {
+        name: renameFolderName.value.trim()
+      });
+      
+      if (response.code === 200) {
+        await loadCategories();
+        closeModal();
+      } else {
+        throw new Error(response.message || '更新分类失败');
+      }
+    } catch (err) {
+      console.error('更新分类失败:', err);
+      alert('更新分类失败: ' + (err.message || '未知错误'));
+    }
   }
 };
 
-const deleteFolder = (folder) => {
+const deleteFolder = async (folder) => {
   if (confirm(`确定要删除文件夹 "${folder.name}" 吗？此操作不可恢复。`)) {
-    const index = folders.value.findIndex(f => f.id === folder.id);
-    if (index > -1) {
-      folders.value.splice(index, 1);
+    try {
+      const response = await categoryApi.deleteCategory(folder.id);
+      
+      if (response.code === 200) {
+        await loadCategories();
+      } else {
+        throw new Error(response.message || '删除分类失败');
+      }
+    } catch (err) {
+      console.error('删除分类失败:', err);
+      alert('删除分类失败: ' + (err.message || '未知错误'));
     }
   }
 };
@@ -174,6 +226,11 @@ const closeModal = () => {
 const goBack = () => {
   router.push('/');
 };
+
+// 页面加载时获取分类数据
+onMounted(() => {
+  loadCategories();
+});
 </script>
 
 <style scoped>
@@ -376,6 +433,64 @@ const goBack = () => {
   font-size: 1.1em;
   color: #666;
   margin: 0;
+}
+
+.loading-state,
+.error-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-icon {
+  font-size: 4em;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.error-state h3 {
+  font-size: 1.5em;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.error-state p {
+  font-size: 1.1em;
+  color: #666;
+  margin: 0 0 20px 0;
+}
+
+.retry-btn {
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
 .modal-overlay {
